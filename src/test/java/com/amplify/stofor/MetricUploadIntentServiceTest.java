@@ -97,4 +97,14 @@ public class MetricUploadIntentServiceTest {
         verify(metricUploadTaskQueue).remove();
     }
 
+
+    @Test
+    public void shouldDeleteItemFromTheQueueOnParseException() {
+        when(metricUploadTaskQueue.peek()).thenThrow(new RuntimeException()).thenReturn(task).thenReturn(null);
+
+        service.onHandleIntent(null);
+
+        verify(metricUploadTaskQueue).remove();
+        verify(task).executeUsingNetwork(httpClient, service);
+    }
 }

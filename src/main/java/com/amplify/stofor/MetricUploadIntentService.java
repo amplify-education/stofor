@@ -36,9 +36,18 @@ public class MetricUploadIntentService extends LimitedQueueRoboIntentService imp
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        MetricUploadTask task;
-        while ((task = queue.peek()) != null) { // NOPMD
-            if (networkConnectivity.isNotConnected()) {
+        while (true) {
+            MetricUploadTask task;
+
+            try {
+                task = queue.peek();
+            } catch (RuntimeException ex) {
+                LOG.error("Runtime exception while picking from the queue: " + ex);
+                queue.remove();
+                continue;
+            }
+
+            if (task == null || networkConnectivity.isNotConnected()) {
                 return;
             }
             task.executeUsingNetwork(getHttpClient(), this);
