@@ -17,7 +17,7 @@
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.7.0</version>
                 <configuration>
                     <sdk>
                         <platform>16</platform>
@@ -91,6 +91,7 @@
             <groupId>com.google.android</groupId>
             <artifactId>android</artifactId>
             <version>4.1.1.4</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.roboguice</groupId>
@@ -111,6 +112,12 @@
             <groupId>amplify</groupId>
             <artifactId>amplify-http-client</artifactId>
             <version>6</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
