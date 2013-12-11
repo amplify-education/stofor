@@ -8,8 +8,16 @@
 
     <application>
         <service android:name="com.amplify.stofor.MetricSubmitIntentService"
-                 android:exported="false"/>
+                 android:exported="false">
+            <intent-filter>
+                <action android:name="com.amplify.stofor.action.SUBMIT_METRIC"/>
+            </intent-filter>
+        </service>
         <service android:name="com.amplify.stofor.MetricUploadIntentService"
-                 android:exported="false"/>
+                 android:exported="false">
+            <intent-filter>
+                <action android:name="com.amplify.stofor.action.START_METRICS_UPLOAD"/>
+            </intent-filter>
+        </service>
     </application>
 </manifest>
